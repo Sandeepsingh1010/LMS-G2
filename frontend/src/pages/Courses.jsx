@@ -97,7 +97,7 @@ export default function Courses() {
                 <BookOpen className="h-6 w-6 text-blue-600" />
               </div>
               <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                Beginner
+                {course.level || 'Beginner'}
               </span>
             </div>
 
@@ -107,11 +107,11 @@ export default function Courses() {
             <div className="space-y-2 mb-4">
               <div className="flex items-center text-gray-600">
                 <Users className="h-4 w-4 mr-2" />
-                <span>120 students</span>
+                <span>{course.studentCount?.toLocaleString() || 0} students</span>
               </div>
               <div className="flex items-center text-gray-600">
                 <Clock className="h-4 w-4 mr-2" />
-                <span>8 weeks</span>
+                <span>{course.duration || 'Unknown'}</span>
               </div>
             </div>
 
