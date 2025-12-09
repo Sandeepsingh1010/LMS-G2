@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { apiAuth } from '../services/api.js';
 import { BookOpen, Calendar, TrendingUp, Play, Trash2 } from 'lucide-react';
 
 export default function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
+  const navigate = useNavigate();
 
   const load = async () => {
     try {
@@ -107,15 +109,18 @@ export default function Enrollments() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span
                       className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${enrollment.status === 'completed'
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-orange-100 text-orange-800'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-orange-100 text-orange-800'
                         }`}
                     >
                       {enrollment.status}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <button className="inline-flex items-center px-3 py-1 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition-colors">
+                    <button
+                      onClick={() => navigate('/welcome', { state: { course: enrollment.course } })}
+                      className="inline-flex items-center px-3 py-1 border border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition-colors"
+                    >
                       <Play className="h-4 w-4 mr-1" />
                       {enrollment.status === 'completed' ? 'Review' : 'Continue'}
                     </button>

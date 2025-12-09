@@ -5,6 +5,7 @@ import Register from './pages/Register.jsx';
 import Courses from './pages/Courses.jsx';
 import Enrollments from './pages/Enrollments.jsx';
 import AdminUsers from './pages/AdminUsers.jsx';
+import Welcome from './pages/Welcome.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
@@ -18,11 +19,15 @@ function App() {
         <Route path="/courses" element={<Courses />} />
         <Route
           path="/enrollments"
-          element={<ProtectedRoute roles={['student','instructor','admin']}><Enrollments /></ProtectedRoute>}
+          element={<ProtectedRoute roles={['student', 'instructor', 'admin']}><Enrollments /></ProtectedRoute>}
         />
         <Route
           path="/admin/users"
           element={<ProtectedRoute roles={['admin']}><AdminUsers /></ProtectedRoute>}
+        />
+        <Route
+          path="/welcome"
+          element={<ProtectedRoute roles={['student', 'instructor', 'admin']}><Welcome /></ProtectedRoute>}
         />
       </Routes>
     </div>
